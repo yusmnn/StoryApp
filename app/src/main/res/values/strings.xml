@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">StoryApp</string>
+
+    <string name="imglogo">image logo</string>
+    <string name="eightCharPass">The password must have 8 characters</string>
+    <string name="emptyName">Name cannot be empty</string>
+    <string name="wrongEmailFormat">Incorrect email format</string>
+    <string name="emailTaken">Email has been registered, please try again!</string>
+    <string name="passNotSame">Passwords do not match</string>
+    <string name="email">Email</string>
+    <string name="noEmail">Invalid email</string>
+    <string name="noPass">Invalid password</string>
+    <string name="noName">Invalid name</string>
+    <string name="noSamePass">Invalid confirm password</string>
+    <string name="error_load">Error Load</string>
+    <string name="language">Language</string>
+    <string name="logout">Logout</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="uploadWarning">Upload the image first</string>
+    <string name="uploadDescWarning">Upload the description first</string>
+    <string name="message">Message:</string>
+    <string name="package_name">com.example.storyapp</string>
+    <string name="image_story">Image Story</string>
+    <string name="show_password">Show Password</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="registration">Registration</string>
+    <string name="create_your_new_story">Create Your New Story</string>
+    <string name="login">Login</string>
+    <string name="dont_have_account">Don\'t have an account yet?</string>
+    <string name="register">Register</string>
+    <string name="image_from_story">Image from story</string>
+    <string name="user_name">User Name</string>
+    <string name="story_description">Story\'s Description</string>
+    <string name="story_date">Story\'s Date</string>
+    <string name="post_stories">Post Stories</string>
+    <string name="add_new_story">Add New Story</string>
+    <string name="izin_kamera_ditolak">Izin kamera ditolak</string>
+    <string name="pilih_gambar">Pilih Gambar</string>
+    <string name="already_have_an_account">already have an account?</string>
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16dp"
+        tools:context=".ui.DetailActivity">
+
+        <TextView
+            android:id="@+id/name_detail"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_28dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sp"
+            android:text="@string/user_name"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_detail"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_from_story"
+            app:layout_constraintEnd_toEndOf="@+id/name_detail"
+            app:layout_constraintStart_toStartOf="@+id/name_detail"
+            app:layout_constraintTop_toBottomOf="@+id/name_detail"
+            app:srcCompat="@drawable/ic_image"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true" />
+
+        <TextView
+            android:id="@+id/desc_detail"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            android:text="@string/story_description"
+            app:layout_constraintEnd_toEndOf="@+id/img_detail"
+            app:layout_constraintStart_toStartOf="@+id/img_detail"
+            app:layout_constraintTop_toBottomOf="@+id/date_detail" />
+
+        <TextView
+            android:id="@+id/date_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:text="@string/story_date"
+            android:textStyle="italic"
+            android:textSize="@dimen/_16sp"
+            app:layout_constraintStart_toStartOf="@+id/img_detail"
+            app:layout_constraintTop_toBottomOf="@+id/img_detail" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

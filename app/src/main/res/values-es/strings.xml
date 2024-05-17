@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="imglogo">imagen del logotipo</string>
+    <string name="eightCharPass">La contraseña debe tener 8 caracteres</string>
+    <string name="emptyName">El nombre no puede estar vacío</string>
+    <string name="wrongEmailFormat">Formato de correo electrónico incorrecto</string>
+    <string name="emailTaken">El correo electrónico ya ha sido registrado, ¡inténtelo de nuevo!</string>
+    <string name="passNotSame">Las contraseñas no coinciden</string>
+    <string name="email">Correo electrónico</string>
+    <string name="noEmail">Correo electrónico no válido</string>
+    <string name="noPass">Contraseña no válida</string>
+    <string name="noName">Nombre no válido</string>
+    <string name="noSamePass">Confirmar contraseña no válida</string>
+    <string name="error_load">Error de carga</string>
+    <string name="language">Idioma</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="uploadWarning">Sube la imagen primero</string>
+    <string name="uploadDescWarning">Sube la descripción primero</string>
+    <string name="message">Mensaje:</string>
+    <string name="package_name">com.example.storyapp</string>
+    <string name="image_story">Imagen de la historia</string>
+    <string name="show_password">Mostrar contraseña</string>
+    <string name="name">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="registration">Registro</string>
+    <string name="create_your_new_story">Crea tu nueva historia</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="dont_have_account">¿No tienes una cuenta todavía?</string>
+    <string name="register">Registrarse</string>
+    <string name="image_from_story">Imagen de la historia</string>
+    <string name="user_name">Nombre de usuario</string>
+    <string name="story_description">Descripción de la historia</string>
+    <string name="story_date">Fecha de la historia</string>
+    <string name="post_stories">Publicar historias</string>
+    <string name="add_new_story">Agregar nueva historia</string>
+    <string name="izin_kamera_ditolak">Permiso de cámara denegado</string>
+    <string name="pilih_gambar">Seleccionar imagen</string>
+    <string name="already_have_an_account">¿ya tienes una cuenta?</string>
+</resources>

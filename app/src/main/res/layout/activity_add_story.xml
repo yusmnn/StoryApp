@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddStoryActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_40dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/imgUpload"
+            app:layout_constraintEnd_toEndOf="@+id/imgUpload"
+            app:layout_constraintStart_toStartOf="@+id/imgUpload"
+            app:layout_constraintTop_toBottomOf="@+id/imgUpload" />
+
+        <Button
+            android:id="@+id/btnPostStory"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_56dp"
+            android:layout_marginTop="@dimen/_18dp"
+            android:text="@string/post_stories"
+            app:layout_constraintEnd_toEndOf="@+id/txtDesc"
+            app:layout_constraintStart_toStartOf="@+id/txtDesc"
+            app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
+
+        <ImageView
+            android:id="@+id/imgUpload"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_32dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/image_from_story"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true" />
+
+        <Button
+            android:id="@+id/btnCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12dp"
+            android:text="@string/camera"
+            app:layout_constraintEnd_toStartOf="@+id/btnGallery"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/imgUpload"
+            app:layout_constraintTop_toBottomOf="@+id/imgUpload" />
+
+        <Button
+            android:id="@+id/btnGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12dp"
+            android:text="@string/gallery"
+            app:layout_constraintEnd_toEndOf="@+id/imgUpload"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnCam"
+            app:layout_constraintTop_toBottomOf="@+id/imgUpload" />
+
+        <EditText
+            android:id="@+id/txtDesc"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_150dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:gravity="top|left"
+            android:hint="@string/story_description"
+            android:inputType="textMultiLine"
+            android:maxHeight="@dimen/_150dp"
+            android:maxLines="8"
+            android:padding="@dimen/_16dp"
+            android:textSize="@dimen/_16sp"
+            android:background="@drawable/border"
+            android:autofillHints="Description"
+            app:layout_constraintEnd_toEndOf="@+id/imgUpload"
+            app:layout_constraintStart_toStartOf="@+id/imgUpload"
+            app:layout_constraintTop_toBottomOf="@+id/btnCam"
+            tools:ignore="RtlHardcoded" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

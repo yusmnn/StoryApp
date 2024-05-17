@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/onboardingImage"
+        android:layout_width="354dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="@dimen/_130dp"
+        android:contentDescription="@string/imglogo"
+        android:src="@drawable/onboarding_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.example.storyapp.customviews.EmailCustomView
+        android:id="@+id/ed_login_email"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:hint="@string/email"
+        app:layout_constraintBottom_toTopOf="@+id/cv_password"
+        app:layout_constraintEnd_toEndOf="@id/onboardingImage"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/onboardingImage"
+        app:layout_constraintTop_toBottomOf="@id/onboardingImage"
+        app:layout_constraintVertical_bias="1.0"
+        android:alpha="0"
+        tools:alpha="1"/>
+
+    <com.example.storyapp.customviews.PasswordCustomView
+        android:id="@+id/cv_password"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/password"
+        app:layout_constraintBottom_toTopOf="@+id/see_pass"
+        app:layout_constraintEnd_toEndOf="@id/ed_login_email"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/ed_login_email"
+        android:alpha="0"
+        tools:alpha="1"/>
+
+    <CheckBox
+        android:id="@+id/see_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:text="@string/show_password"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="@+id/onboardingImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/onboardingImage"
+        android:alpha="0"
+        tools:alpha="1" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_56dp"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toTopOf="@+id/txt_not_register"
+        app:layout_constraintEnd_toEndOf="@id/onboardingImage"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/onboardingImage"
+        android:alpha="0"
+        tools:alpha="1"/>
+
+    <TextView
+        android:id="@+id/txt_not_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_32dp"
+        android:layout_marginBottom="@dimen/_130dp"
+        android:text="@string/dont_have_account"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        android:alpha="0"
+        tools:alpha="1"/>
+
+    <TextView
+        android:id="@+id/txt_btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_3dp"
+        android:text="@string/register"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txt_not_register"
+        app:layout_constraintTop_toTopOf="@+id/txt_not_register"
+        android:alpha="0"
+        tools:alpha="1"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="imglogo">gambar logo</string>
+    <string name="eightCharPass">Kata sandi harus memiliki 8 karakter</string>
+    <string name="emptyName">Nama tidak boleh kosong</string>
+    <string name="wrongEmailFormat">Format email salah</string>
+    <string name="emailTaken">Email sudah terdaftar, silakan coba lagi!</string>
+    <string name="passNotSame">Kata sandi tidak cocok</string>
+    <string name="email">Email</string>
+    <string name="noEmail">Email tidak valid</string>
+    <string name="noPass">Kata sandi tidak valid</string>
+    <string name="noName">Nama tidak valid</string>
+    <string name="noSamePass">Konfirmasi kata sandi tidak valid</string>
+    <string name="error_load">Gagal Memuat</string>
+    <string name="language">Bahasa</string>
+    <string name="logout">Keluar</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="uploadWarning">Unggah gambar terlebih dahulu</string>
+    <string name="uploadDescWarning">Unggah deskripsi terlebih dahulu</string>
+    <string name="message">Pesan:</string>
+    <string name="package_name">com.example.storyapp</string>
+    <string name="image_story">Gambar Cerita</string>
+    <string name="show_password">Tampilkan Kata Sandi</string>
+    <string name="name">Nama</string>
+    <string name="password">Kata Sandi</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="registration">Pendaftaran</string>
+    <string name="create_your_new_story">Buat Cerita Baru Anda</string>
+    <string name="login">Masuk</string>
+    <string name="dont_have_account">Belum punya akun?</string>
+    <string name="register">Daftar</string>
+    <string name="image_from_story">Gambar dari cerita</string>
+    <string name="user_name">Nama Pengguna</string>
+    <string name="story_description">Deskripsi Cerita</string>
+    <string name="story_date">Tanggal Cerita</string>
+    <string name="post_stories">Posting Cerita</string>
+    <string name="add_new_story">Tambahkan Cerita Baru</string>
+    <string name="izin_kamera_ditolak">Izin kamera ditolak</string>
+    <string name="pilih_gambar">Pilih Gambar</string>
+    <string name="already_have_an_account">sudah punya akun?</string>
+</resources>
