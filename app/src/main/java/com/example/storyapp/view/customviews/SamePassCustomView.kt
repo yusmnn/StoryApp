@@ -1,4 +1,4 @@
-package com.example.storyapp.customviews
+package com.example.storyapp.view.customviews
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher

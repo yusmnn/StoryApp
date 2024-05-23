@@ -1,50 +1,43 @@
 package com.example.storyapp.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.storyapp.data.remote.response.ResponseStory
-import com.example.storyapp.data.remote.response.StoryDetailResponse
-import com.example.storyapp.data.remote.retrofit.ApiConfig
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.storyapp.data.remote.response.DataLogin
+import com.example.storyapp.data.remote.response.DataRegister
+import com.example.storyapp.data.remote.response.ListStoryDetail
+import com.example.storyapp.data.remote.response.LoginResponse
+import com.example.storyapp.data.repository.MainRepository
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
-class MainViewModel: ViewModel() {
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> = _loading
+class MainViewModel(private val repo: MainRepository): ViewModel() {
+    val stories: LiveData<List<ListStoryDetail>> = repo.stories
+    val message: LiveData<String> = repo.message
+    val isLoading: LiveData<Boolean> = repo.loading
+    val login: LiveData<LoginResponse> = repo.userLogin
 
-    private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
+    fun login(dataLogin: DataLogin) {
+        repo.getLoginResponse(dataLogin)
+    }
 
-    var story: List<StoryDetailResponse> = listOf()
-    var isError: Boolean = false
+    fun register(dataRegis: DataRegister) {
+        repo.getRegisterResponse(dataRegis)
+    }
 
-    fun getStory(token: String) {
-        _loading.value = true
-        val api = ApiConfig.getApiService().getStories("Bearer $token")
-        api.enqueue(object : Callback<ResponseStory> {
-            override fun onResponse(call: Call<ResponseStory>, response: Response<ResponseStory>) {
-                _loading.value = false
+    fun upload(photo: MultipartBody.Part, des: RequestBody, lat: Double?, lng: Double?, token: String) {
+        repo.upload(photo, des, lat, lng, token)
+    }
 
-                if (response.isSuccessful){
-                    isError = false
-                    val responseBody = response.body()
-                    if (responseBody != null){
-                        story = responseBody.listStory
-                    }
-                    _message.value = responseBody?.message.toString()
-                } else {
-                    isError = true
-                    _message.value = response.message()
-                }
-            }
+    @ExperimentalPagingApi
+    fun getPagingStories(token: String): LiveData<PagingData<ListStoryDetail>> {
+        return repo.getPagingStories(token).cachedIn(viewModelScope)
+    }
 
-            override fun onFailure(call: Call<ResponseStory>, t: Throwable) {
-                _loading.value = false
-                isError = true
-                _message.value = "Pesan error :" + t.message.toString()
-            }
-        })
+    fun getStories(token: String) {
+        repo.getStory(token)
     }
 }

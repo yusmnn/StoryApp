@@ -7,8 +7,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-
-// ganti nama kelas ini nanti, jika membingungkan
 class SsPreferences private constructor(private val dataStore: DataStore<Preferences>){
 
     private val loginKey = booleanPreferencesKey("login_session")

@@ -4,6 +4,7 @@ plugins {
     id ("kotlin-parcelize")
     id("com.google.devtools.ksp")
     id ("kotlin-kapt")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
 }
 
 android {
@@ -43,36 +44,71 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
-
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
+    // Core libraries
+    implementation(libs.androidx.core.ktx.v1120)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
+    implementation(libs.material.v1110)
+
+    // UI and Layout
     implementation(libs.androidx.constraintlayout)
-
-    implementation (libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
-
-    implementation (libs.androidx.activity.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.lifecycle.livedata.ktx)
-
-    implementation (libs.androidx.datastore.preferences)
     implementation (libs.androidx.swiperefreshlayout)
     implementation (libs.glide)
     implementation (libs.compressor)
 
-    implementation (libs.androidx.core.ktx.v170)
+    // Android Support
+    implementation(libs.support.annotations)
+    implementation (libs.androidx.activity.ktx.v190)
 
+    // Lifecycle and ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v280)
+    implementation (libs.androidx.lifecycle.livedata.ktx.v280)
+
+    // Room Database
+    implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.activity)
+    ksp(libs.androidx.room.compiler)
+    implementation (libs.room.paging)
+    implementation (libs.room.ktx)
+
+    // Paging
+    implementation (libs.androidx.paging.runtime.ktx)
+
+    // DataStore
+    implementation (libs.androidx.datastore.preferences.v111)
+
+    // Networking
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    // Google Play Services
+    implementation (libs.play.services.location)
+    implementation (libs.play.services.places)
+    implementation (libs.play.services.maps)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    debugImplementation (libs.androidx.fragment.testing)
+    implementation (libs.androidx.espresso.idling.resource)
+    androidTestImplementation (libs.androidx.espresso.intents)
+    implementation (libs.androidx.espresso.contrib)
+    androidTestImplementation (libs.androidx.core.testing)
+    androidTestImplementation (libs.kotlinx.coroutines.test)
+    testImplementation (libs.androidx.core.testing)
+    testImplementation (libs.kotlinx.coroutines.test.v171)
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.mockito.mockito.inline)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.strikt.core)
+    androidTestImplementation (libs.mockwebserver3)
 }
+
 

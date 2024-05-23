@@ -1,4 +1,4 @@
-package com.example.storyapp.ui
+package com.example.storyapp.view.ui
 
 import android.Manifest
 import android.content.ContentResolver
@@ -21,9 +21,11 @@ import androidx.lifecycle.lifecycleScope
 import com.example.storyapp.R
 import com.example.storyapp.data.database.SsPreferences
 import com.example.storyapp.databinding.ActivityAddStoryBinding
-import com.example.storyapp.viewmodel.AddStoryViewModel
-import com.example.storyapp.viewmodel.UserViewModel
+import com.example.storyapp.viewmodel.DataStoreViewModel
+import com.example.storyapp.viewmodel.MainViewModel
+import com.example.storyapp.viewmodel.MainViewModelFactory
 import com.example.storyapp.viewmodel.ViewModelFactory
+import com.google.android.gms.maps.model.LatLng
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,8 +48,9 @@ class AddStoryActivity : AppCompatActivity() {
     private lateinit var token: String
     private lateinit var fileFinal: File
     private var getFile: File? = null
-    private val addStoryViewModel: AddStoryViewModel by lazy {
-        ViewModelProvider(this)[AddStoryViewModel::class.java]
+    private var latLng: LatLng? = null
+    private val addStoryViewModel: MainViewModel by lazy {
+        ViewModelProvider(this, MainViewModelFactory(this))[MainViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,9 +60,9 @@ class AddStoryActivity : AppCompatActivity() {
         onClicked()
 
         val pref = SsPreferences.getInstance(dataStore)
-        val userViewModel = ViewModelProvider(this, ViewModelFactory(pref))[UserViewModel::class.java]
+        val dataStoreViewModel = ViewModelProvider(this, ViewModelFactory(pref))[DataStoreViewModel::class.java]
 
-        userViewModel.getToken().observe(this){
+        dataStoreViewModel.getToken().observe(this){
             token = it
         }
 
@@ -67,17 +70,17 @@ class AddStoryActivity : AppCompatActivity() {
             showToast(it)
         }
 
-        addStoryViewModel.loading.observe(this){
+        addStoryViewModel.isLoading.observe(this){
             onLoading(it)
         }
 
-        supportActionBar?.title = getString(R.string.add_new_story)
+        supportActionBar?.title = R.string.add_new_story.toString()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun onClicked() {
         binding.btnPostStory.setOnClickListener {
-            if (getFile==null){
+            if (getFile == null) {
                 showToast(resources.getString(R.string.uploadWarning))
                 return@setOnClickListener
             }
@@ -109,7 +112,7 @@ class AddStoryActivity : AppCompatActivity() {
                 )
 
                 val desPart = des.toRequestBody("text/plain".toMediaType())
-                addStoryViewModel.upload(imgMultiPart, desPart, token)
+                addStoryViewModel.upload(imgMultiPart, desPart, latLng?.latitude, latLng?.longitude, token)
             }
         }
 

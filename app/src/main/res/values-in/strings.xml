@@ -40,4 +40,11 @@
     <string name="izin_kamera_ditolak">Izin kamera ditolak</string>
     <string name="pilih_gambar">Pilih Gambar</string>
     <string name="already_have_an_account">sudah punya akun?</string>
+    <string name="maps">Maps</string>
+    <string name="error">Error</string>
+    <string name="reload">Reload</string>
+    <string name="data_not_valid">Data yang dimasukkan tidak valid</string>
+    <string name="cerita_berhasil_diambil">Cerita berhasil diambil</string>
+    <string name="logout_success">Logout berhasil</string>
+    <string name="login_failed">Login Salah</string>
 </resources>

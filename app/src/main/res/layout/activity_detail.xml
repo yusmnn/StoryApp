@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DetailActivity">
+    tools:context=".view.ui.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_16dp"
-        tools:context=".ui.DetailActivity">
+        tools:context=".view.ui.DetailActivity">
 
         <TextView
             android:id="@+id/name_detail"

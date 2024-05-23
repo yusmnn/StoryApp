@@ -1,4 +1,4 @@
-package com.example.storyapp.ui
+package com.example.storyapp.view.ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -14,22 +14,27 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.storyapp.R
 import com.example.storyapp.data.database.SsPreferences
 import com.example.storyapp.data.remote.response.DataLogin
+import com.example.storyapp.data.remote.response.ListStoryDetail
+import com.example.storyapp.databinding.ActivityDetailBinding
 import com.example.storyapp.databinding.ActivityLoginBinding
-import com.example.storyapp.viewmodel.LoginViewModel
-import com.example.storyapp.viewmodel.UserViewModel
+import com.example.storyapp.view.adapter.ListStoryAdapter
+import com.example.storyapp.viewmodel.DataStoreViewModel
+import com.example.storyapp.viewmodel.MainViewModel
+import com.example.storyapp.viewmodel.MainViewModelFactory
 import com.example.storyapp.viewmodel.ViewModelFactory
 
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val loginViewModel: LoginViewModel by lazy {
-        ViewModelProvider(this)[LoginViewModel::class.java]
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this, MainViewModelFactory(this))[MainViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +46,9 @@ class LoginActivity : AppCompatActivity() {
         onClicked()
 
         val pref = SsPreferences.getInstance(dataStore)
-        val userViewModel = ViewModelProvider(this, ViewModelFactory(pref))[UserViewModel::class.java]
+        val dataStoreViewModel = ViewModelProvider(this, ViewModelFactory(pref))[DataStoreViewModel::class.java]
 
-        userViewModel.getLogin().observe(this) { loginTrue ->
+        dataStoreViewModel.getLogin().observe(this) { loginTrue ->
             if (loginTrue) {
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -51,16 +56,20 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        loginViewModel.message.observe(this) { msg ->
-            loginResponse(loginViewModel.isError, msg, userViewModel)
+        viewModel.message.observe(this){ message ->
+            loginResponse(message, dataStoreViewModel)
         }
 
-        loginViewModel.loading.observe(this) {
+        viewModel.isLoading.observe(this) {
             onLoading(it)
         }
     }
 
     private fun onClicked() {
+        binding.txtBtnRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.seePass.setOnCheckedChangeListener { _, checked ->
             binding.cvPassword.transformationMethod = if (checked) {
@@ -80,23 +89,16 @@ class LoginActivity : AppCompatActivity() {
                     binding.edLoginEmail.text.toString().trim(),
                     binding.cvPassword.text.toString().trim()
                 )
-                loginViewModel.getLoginResponse(requestLogin)
-
+                viewModel.login(requestLogin)
             } else {
                 if (!binding.edLoginEmail.emailValid) binding.edLoginEmail.error =
                     getString(R.string.noEmail)
                 if (!binding.cvPassword.passValid) binding.cvPassword.error =
                     getString(R.string.noPass)
 
-                Toast.makeText(this, "Login Salah", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
             }
         }
-
-        binding.txtBtnRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
     private fun dataValid(): Boolean {
@@ -127,15 +129,46 @@ class LoginActivity : AppCompatActivity() {
         binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
     }
 
-    private fun loginResponse(error: Boolean, msg: String, userViewModel: UserViewModel) {
-        if (!error) {
+    private fun loginResponse(msg: String, dataStoreViewModel: DataStoreViewModel) {
+        if (msg.contains("Hi")) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-            val user = loginViewModel.userLogin.value
-            userViewModel.saveLogin(true)
-            user?.loginResult!!.token.let { userViewModel.saveToken(it) }
-            user.loginResult.name.let { userViewModel.saveName(it) }
+            val user = viewModel.login.value
+            dataStoreViewModel.saveLogin(true)
+            dataStoreViewModel.saveToken(user?.loginResult!!.token)
+            dataStoreViewModel.saveName(user.loginResult.name)
         } else {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
+    }
+}
+
+@Suppress("DEPRECATION")
+class DetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDetailBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val detailStory = intent.getParcelableExtra<ListStoryDetail>(EXTRA_DATA) as ListStoryDetail
+        setStory(detailStory)
+    }
+
+    private fun setStory(detailStory: ListStoryDetail) {
+        Glide.with(this)
+            .load(detailStory.photoUrl)
+            .into(binding.imgDetail)
+
+        binding.apply {
+            nameDetail.text = detailStory.name
+            descDetail.text = detailStory.description
+            dateDetail.text = ListStoryAdapter.dateToString(detailStory.createdAt.toString())
+        }
+    }
+
+    companion object {
+        const val EXTRA_DATA = "EXTRA_DATA"
     }
 }

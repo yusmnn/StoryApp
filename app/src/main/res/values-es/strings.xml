@@ -40,4 +40,11 @@
     <string name="izin_kamera_ditolak">Permiso de cámara denegado</string>
     <string name="pilih_gambar">Seleccionar imagen</string>
     <string name="already_have_an_account">¿ya tienes una cuenta?</string>
+    <string name="maps">Maps</string>
+    <string name="error">Error</string>
+    <string name="reload">Reload</string>
+    <string name="data_not_valid">Los datos no son válidos</string>
+    <string name="cerita_berhasil_diambil">La historia fue capturada con éxito.</string>
+    <string name="logout_success">Cerrar sesión correctamente</string>
+    <string name="login_failed">Error de inicio de sesion</string>
 </resources>

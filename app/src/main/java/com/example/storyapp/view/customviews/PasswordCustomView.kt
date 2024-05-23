@@ -1,4 +1,4 @@
-package com.example.storyapp.customviews
+package com.example.storyapp.view.customviews
 
 import android.content.Context
 import android.graphics.Rect
@@ -11,7 +11,6 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.example.storyapp.R
-
 
 class PasswordCustomView : AppCompatEditText, View.OnTouchListener{
 

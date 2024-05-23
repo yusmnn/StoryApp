@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.storyapp.data.database.SsPreferences
 import kotlinx.coroutines.launch
 
-class UserViewModel(private val preferences: SsPreferences) : ViewModel() {
+
+class DataStoreViewModel(private val preferences: SsPreferences) : ViewModel() {
     fun getLogin(): LiveData<Boolean> {
         return preferences.getLoginSession().asLiveData()
     }

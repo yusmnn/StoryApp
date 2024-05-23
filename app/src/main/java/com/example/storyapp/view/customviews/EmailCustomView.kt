@@ -1,4 +1,4 @@
-package com.example.storyapp.customviews
+package com.example.storyapp.view.customviews
 
 import android.content.Context
 import android.text.Editable
@@ -20,7 +20,6 @@ class EmailCustomView : AppCompatEditText, View.OnFocusChangeListener {
     constructor(context: Context) : super(context) {
         init()
     }
-
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
     }

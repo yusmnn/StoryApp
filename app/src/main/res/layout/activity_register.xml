@@ -5,20 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RegisterActivity">
+    tools:context=".view.ui.RegisterActivity">
 
     <ImageView
         android:id="@+id/onboardingImage"
         android:layout_width="354dp"
         android:layout_height="98dp"
         android:layout_marginTop="@dimen/_50dp"
-        android:src="@drawable/onboarding_image"
         android:contentDescription="@string/imglogo"
+        android:src="@drawable/onboarding_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.storyapp.customviews.NameCustomView
+    <com.example.storyapp.view.customviews.NameCustomView
         android:id="@+id/ed_register_name"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/onboardingImage"
         tools:alpha="1" />
 
-    <com.example.storyapp.customviews.EmailCustomView
+    <com.example.storyapp.view.customviews.EmailCustomView
         android:id="@+id/ed_register_email"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:alpha="0"
         tools:alpha="1" />
 
-    <com.example.storyapp.customviews.PasswordCustomView
+    <com.example.storyapp.view.customviews.PasswordCustomView
         android:id="@+id/cv_password"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         android:alpha="0"
         tools:alpha="1"/>
 
-    <com.example.storyapp.customviews.SamePassCustomView
+    <com.example.storyapp.view.customviews.SamePassCustomView
         android:id="@+id/ed_confirm_password"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"

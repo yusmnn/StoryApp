@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity">
+    tools:context=".view.ui.LoginActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.example.storyapp.customviews.EmailCustomView
+    <com.example.storyapp.view.customviews.EmailCustomView
         android:id="@+id/ed_login_email"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:alpha="0"
         tools:alpha="1"/>
 
-    <com.example.storyapp.customviews.PasswordCustomView
+    <com.example.storyapp.view.customviews.PasswordCustomView
         android:id="@+id/cv_password"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"

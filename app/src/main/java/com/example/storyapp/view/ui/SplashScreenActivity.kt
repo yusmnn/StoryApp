@@ -1,14 +1,16 @@
-package com.example.storyapp.ui
+package com.example.storyapp.view.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.data.database.SsPreferences
 import com.example.storyapp.databinding.ActivitySplashScreenBinding
-import com.example.storyapp.viewmodel.UserViewModel
+import com.example.storyapp.viewmodel.DataStoreViewModel
 import com.example.storyapp.viewmodel.ViewModelFactory
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
@@ -20,9 +22,9 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val ssPref = SsPreferences.getInstance(dataStore)
-        val userViewModel = ViewModelProvider(this, ViewModelFactory(ssPref))[UserViewModel::class.java]
+        val dataStoreViewModel = ViewModelProvider(this, ViewModelFactory(ssPref))[DataStoreViewModel::class.java]
 
-        userViewModel.getLogin().observe(this) {isLogin ->
+        dataStoreViewModel.getLogin().observe(this) {isLogin ->
             val intent = if (isLogin) {
                 Intent(this, MainActivity::class.java)
             } else {

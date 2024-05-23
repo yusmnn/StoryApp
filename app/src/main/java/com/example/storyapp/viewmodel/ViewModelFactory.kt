@@ -8,8 +8,8 @@ class ViewModelFactory(private val pref: SsPreferences) : ViewModelProvider.NewI
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
-            return UserViewModel(pref) as T
+        if (modelClass.isAssignableFrom(DataStoreViewModel::class.java)) {
+            return DataStoreViewModel(pref) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
