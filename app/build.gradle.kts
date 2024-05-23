@@ -92,6 +92,10 @@ dependencies {
     implementation (libs.play.services.places)
     implementation (libs.play.services.maps)
 
+
+    implementation (libs.jetbrains.kotlinx.coroutines.core)
+    implementation (libs.jetbrains.kotlinx.coroutines.android)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

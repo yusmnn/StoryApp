@@ -25,6 +25,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val boundBuilder = LatLngBounds.Builder()
@@ -90,31 +93,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun addMarker(data: List<ListStoryDetail>) {
-        lateinit var locationZoom: LatLng
-        data.forEach {
-            if (it.lat != null && it.lon != null) {
-                val latLng = LatLng(it.lat, it.lon)
-                val address = LocConverter.getAddress(latLng, this)
-                val marker = mMap.addMarker(
-                    MarkerOptions()
-                        .position(latLng)
-                        .title(it.name)
-                        .snippet(address)
-                        .icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.logo)))
-                )
-                boundBuilder.include(latLng)
-                marker?.tag = it
+        CoroutineScope(Dispatchers.Main).launch {
+            lateinit var locationZoom: LatLng
+            data.forEach {
+                if (it.lat != null && it.lon != null) {
+                    val latLng = LatLng(it.lat, it.lon)
+                    val address = LocConverter.getAddress(latLng, this@MapsActivity)
+                    val marker = mMap.addMarker(
+                        MarkerOptions()
+                            .position(latLng)
+                            .title(it.name)
+                            .snippet(address)
+                            .icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.logo)))
+                    )
+                    boundBuilder.include(latLng)
+                    marker?.tag = it
 
-                locationZoom = latLng
+                    locationZoom = latLng
+                }
             }
-        }
 
-        mMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                locationZoom, 3f
+            mMap.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    locationZoom, 3f
+                )
             )
-        )
+        }
     }
+
     private fun getBitmapFromDrawable(drawableId: Int): Bitmap {
         val drawable = BitmapFactory.decodeResource(resources, drawableId)
         return Bitmap.createScaledBitmap(drawable, 100, 100, false)

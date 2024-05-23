@@ -74,7 +74,7 @@ class AddStoryActivity : AppCompatActivity() {
             onLoading(it)
         }
 
-        supportActionBar?.title = R.string.add_new_story.toString()
+        supportActionBar?.title = getString(R.string.pilih_gambar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

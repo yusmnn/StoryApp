@@ -10,20 +10,23 @@ import com.example.storyapp.databinding.ItemLoadBinding
 
 class LoadingAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<LoadingAdapter.LoadingStateViewHolder>() {
+
     class LoadingStateViewHolder(private val binding: ItemLoadBinding, retry: () -> Unit) :
-        RecyclerView.ViewHolder(binding.root){
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.btnRetry.setOnClickListener { retry.invoke() }
         }
 
-        fun bind(loadState: LoadState){
-            if (loadState is LoadState.Error) {
-                binding.tvError.text = loadState.error.localizedMessage
+        fun bind(loadState: LoadState) {
+            binding.apply {
+                if (loadState is LoadState.Error) {
+                    tvError.text = loadState.error.localizedMessage
+                }
+                progressBar.isVisible = loadState is LoadState.Loading
+                btnRetry.isVisible = loadState is LoadState.Error
+                tvError.isVisible = loadState is LoadState.Error
             }
-            binding.progressBar.isVisible = loadState is LoadState.Loading
-            binding.btnRetry.isVisible = loadState is LoadState.Error
-            binding.tvError.isVisible = loadState is LoadState.Error
         }
     }
 
